@@ -17,15 +17,15 @@ This repository contains all the learning material, code samples, and resources 
 
 | Folder | Description |
 |--------|-------------|
-| `C_Programming/` | C code exercises and concepts |
+| `c_module/` | C and C++ code exercises and concepts |
 | `dld/` | gates, circuits, system verilog related tasks |
-| `Assembly/` | MIPS or RISC-V assembly codes |
-| `RISC-V/` | RISC-V examples and notes |
-| `SystemVerilog/` | SV syntax, testbenches, tasks/functions |
-| `Computer_Architecture/` | Notes and diagrams |
-| `UVM/` | UVM agents, drivers, monitors, testbenches |
-| `Projects/` | Combined verification projects |
-| `Resources/` | Books, references, PDFs |
+| `assembly/` | MIPS or RISC-V assembly codes |
+| `riscv/` | RISC-V examples and notes |
+| `systemverilog/` | SV syntax, testbenches, tasks/functions |
+| `computer_architecture/` | Notes and diagrams |
+| `uvm/` | UVM agents, drivers, monitors, testbenches |
+| `projects/` | Combined verification projects |
+| `resources/` | Books, references, PDFs |
 
 ## 💼 Purpose
 

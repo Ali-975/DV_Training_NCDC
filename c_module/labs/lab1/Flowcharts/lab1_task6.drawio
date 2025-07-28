@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="27.2.0">
+  <diagram name="Page-1" id="aLG1T5idR-eLXirINR4T">
+    <mxGraphModel dx="1426" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E07A5F;fontColor=#393C56;fillColor=#F2CC8F;" edge="1" parent="1" source="qcRYjATRpdgvJ6WB96X2-1" target="qcRYjATRpdgvJ6WB96X2-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-1" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px;&quot;&gt;Start&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="365" y="120" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E07A5F;fontColor=#393C56;fillColor=#F2CC8F;" edge="1" parent="1" source="qcRYjATRpdgvJ6WB96X2-2" target="qcRYjATRpdgvJ6WB96X2-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-2" value="&lt;font style=&quot;color: light-dark(rgb(26, 64, 255), rgb(0, 0, 0)); font-size: 18px;&quot;&gt;&lt;b&gt;User Input a, b, c&lt;/b&gt;&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="266.5" y="200" width="317" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;" edge="1" parent="1" source="qcRYjATRpdgvJ6WB96X2-3" target="qcRYjATRpdgvJ6WB96X2-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-3" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px;&quot;&gt;max = (-b + sqrt(b^2 - 4ac)) / 2a&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="265" y="280" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;" edge="1" parent="1" source="qcRYjATRpdgvJ6WB96X2-5" target="qcRYjATRpdgvJ6WB96X2-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-5" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px;&quot;&gt;print max, min&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="266.5" y="440" width="317" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;" edge="1" parent="1" source="qcRYjATRpdgvJ6WB96X2-7" target="qcRYjATRpdgvJ6WB96X2-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-7" value="&lt;b style=&quot;color: rgb(0, 0, 0); font-size: 18px;&quot;&gt;min = (-b + sqrt(b^2 - 4ac)) / 2a&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="265" y="360" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="qcRYjATRpdgvJ6WB96X2-8" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="365" y="520" width="120" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

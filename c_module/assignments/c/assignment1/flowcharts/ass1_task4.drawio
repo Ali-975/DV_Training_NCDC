@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="27.2.0">
+  <diagram name="Page-1" id="Z-S4PE2aAqMZWWoPqeV4">
+    <mxGraphModel dx="1783" dy="996" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" edge="1" parent="1" source="S4vWzP3f2MI0WehdMuwr-2" target="S4vWzP3f2MI0WehdMuwr-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-2" value="&lt;font style=&quot;color: rgb(242, 242, 242);&quot;&gt;Start&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-58" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="S4vWzP3f2MI0WehdMuwr-4" target="S4vWzP3f2MI0WehdMuwr-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-4" value="Enter Mass M1" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="303" y="160" width="245" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-25" value="Stop" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="380.5" y="640" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="S4vWzP3f2MI0WehdMuwr-53" target="S4vWzP3f2MI0WehdMuwr-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-53" value="Enter Mass M2" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="303" y="240" width="245" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="S4vWzP3f2MI0WehdMuwr-55" target="S4vWzP3f2MI0WehdMuwr-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-55" value="Enter distance d" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="303" y="320" width="245" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="S4vWzP3f2MI0WehdMuwr-56" target="S4vWzP3f2MI0WehdMuwr-57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-56" value="k = 6.67x10^-8" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="303" y="400" width="245" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="S4vWzP3f2MI0WehdMuwr-57" target="S4vWzP3f2MI0WehdMuwr-62">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-57" value="F = {k(M1 x M2)} / (d x d)" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="303" y="480" width="245" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-64" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="S4vWzP3f2MI0WehdMuwr-62" target="S4vWzP3f2MI0WehdMuwr-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S4vWzP3f2MI0WehdMuwr-62" value="print F" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="303" y="560" width="245" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
