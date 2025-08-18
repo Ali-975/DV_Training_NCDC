@@ -19,7 +19,7 @@ This repository contains all the learning material, code samples, and resources 
 |--------|-------------|
 | `c_module/` | C and C++ code exercises and concepts |
 | `dld/` | gates, circuits, system verilog related tasks |
-| `assembly/` | MIPS or RISC-V assembly codes |
+| `assembly/` | RISC-V assembly codes |
 | `riscv/` | RISC-V examples and notes |
 | `systemverilog/` | SV syntax, testbenches, tasks/functions |
 | `computer_architecture/` | Notes and diagrams |
