@@ -19,11 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module clk_div #(parameter COUNT = 50000000)   // default for 1Hz from 100MHz
-    (q, clk, rst);
-    output logic q;
-    input logic clk;
-    input logic rst;
+module clk_div #(parameter COUNT = 50000000)(    
+    input logic clk,
+    input logic rst,
+    output logic q
+);
+    
     logic [26:0]counter;
     
     always@(posedge clk or negedge rst)begin
@@ -32,7 +33,7 @@ module clk_div #(parameter COUNT = 50000000)   // default for 1Hz from 100MHz
             counter <= 0;
         end
         else begin
-            if(counter == COUNT)begin
+            if(counter == COUNT -1 )begin
                 q <= ~q;
                 counter <= 1'b0;
             end

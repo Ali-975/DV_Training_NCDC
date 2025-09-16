@@ -20,9 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module counter_param(A, B, C, D, clk_div_8, rst);
-    output logic A, B, C, D;
-    input logic clk_div_8, rst;
+module counter_param(
+    input logic clk_div_8,
+    input logic rst,
+    
+    output logic A,
+    output logic B,
+    output logic C,
+    output logic D
+);
     
     logic [$clog2(651)-1:0] cntr_A; //for 9600 baudrate  12.5MHz/9600bps
     logic [$clog2(325)-1:0] cntr_B; //for 19200 baudrate
@@ -35,6 +41,7 @@ module counter_param(A, B, C, D, clk_div_8, rst);
             B <= 1'b0;
             C <= 1'b0;
             D <= 1'b0;
+            
             cntr_A <= 1'b0;
             cntr_B <= 1'b0;
             cntr_C <= 1'b0;

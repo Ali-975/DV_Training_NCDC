@@ -27,7 +27,7 @@ module receiver(
     
     output logic rx_status,
     output logic [7:0] d_out
-    );
+);
     
     logic [7:0] data_reg, dout_reg;
     logic [2:0] index;
@@ -58,8 +58,7 @@ module receiver(
                     sample_count <= 3'd0;
                 else
                     sample_count <= sample_count + 1;
-            end 
-            else begin
+            end else begin
                 sample_count <= 3'd0; // reset in idle
             end
             case(current_state)
@@ -106,3 +105,4 @@ module receiver(
     
     assign d_out = dout_reg;
 endmodule
+
