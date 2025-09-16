@@ -1,0 +1,191 @@
+    .data
+array:    .word -1, 22, 8, 35, 5, 4, 11, 2, 1, 78
+n:        .word 10
+origmsg:  .asciiz "Original Array:\n"
+aftermsg: .asciiz "After Quick Sort:\n"
+newline:  .asciiz "\n"
+
+    .text
+    .globl main
+
+# -------------------------
+# partition(base, low, high)
+# inputs: a0 = base (address), a1 = low (index), a2 = high (index)
+# output: a0 = pivot index (i+1)
+# uses t0..t6
+# -------------------------
+partition:
+    addi sp, sp, -16
+    sw   ra, 12(sp)
+    sw   a0, 8(sp)
+    sw   a1, 4(sp)
+    sw   a2, 0(sp)
+
+    # pivot = arr[high]
+    slli t0, a2, 2        # t0 = high*4
+    add  t0, a0, t0       # t0 = base + high*4
+    lw   t1, 0(t0)        # t1 = pivot
+
+    addi t2, a1, -1       # t2 = i = low - 1
+    mv   t3, a1           # t3 = j = low
+
+part_loop:
+    bge  t3, a2, part_end # if j >= high -> end loop
+
+    # addr_j = base + j*4
+    slli t4, t3, 2
+    add  t4, a0, t4
+    lw   t5, 0(t4)        # t5 = arr[j]
+
+    # if arr[j] <= pivot -> i++; swap arr[i], arr[j]
+    ble  t5, t1, do_swap
+    j    cont_j
+
+do_swap:
+    addi t2, t2, 1        # i++
+    slli t6, t2, 2        # t6 = i*4
+    add  t6, a0, t6       # addr_i = base + i*4
+
+    # swap addr_i <-> addr_j
+    lw   t0, 0(t6)        # t0 = arr[i]
+    sw   t5, 0(t6)        # arr[i] = arr[j]
+    sw   t0, 0(t4)        # arr[j] = old arr[i]
+
+cont_j:
+    addi t3, t3, 1
+    j    part_loop
+
+part_end:
+    addi t2, t2, 1        # i = i + 1 (i+1 is pivot index)
+    slli t4, t2, 2
+    add  t4, a0, t4       # addr_i1 = base + (i+1)*4
+    slli t5, a2, 2
+    add  t5, a0, t5       # addr_high = base + high*4
+
+    lw   t0, 0(t4)        # temp = arr[i+1]
+    lw   t6, 0(t5)        # arr[high]
+    sw   t6, 0(t4)
+    sw   t0, 0(t5)
+
+    mv   a0, t2           # return pivot index in a0
+
+    lw   ra, 12(sp)
+    addi sp, sp, 16
+    ret
+
+# -------------------------
+# quicksort(base, low, high)
+# inputs: a0 = base, a1 = low, a2 = high
+# uses t0..t6 (caller-saved)
+# -------------------------
+quicksort:
+    # if low >= high return
+    bge  a1, a2, qs_ret
+
+    # make a small stack frame to save ra and args
+    addi sp, sp, -16
+    sw   ra, 12(sp)
+    sw   a0, 8(sp)
+    sw   a1, 4(sp)
+    sw   a2, 0(sp)
+
+    # partition(base, low, high)  -> returns pivot index in a0
+    jal  partition
+    mv   t0, a0            # t0 = pivot index
+
+    # quicksort(base, low, pivot-1)
+    lw   a0, 8(sp)         # base
+    lw   a1, 4(sp)         # low
+    addi a2, t0, -1
+    jal  quicksort
+
+    # quicksort(base, pivot+1, high)
+    lw   a0, 8(sp)         # base
+    addi a1, t0, 1
+    lw   a2, 0(sp)         # original high
+    jal  quicksort
+
+    lw   ra, 12(sp)
+    addi sp, sp, 16
+
+qs_ret:
+    ret
+
+# -------------------------
+# main
+# prints original array, calls quicksort, prints sorted array
+# uses syscall ABI: a0=syscall-id, a1=arg
+# -------------------------
+main:
+    la   t1, array         # t1 = base
+    lw   t0, n             # t0 = n
+
+    # Print "Original Array:\n"
+    la   a1, origmsg
+    li   a0, 4
+    ecall
+
+    # print original array (space-separated)
+    addi t2, x0, 0         # i = 0
+print_orig:
+    bge  t2, t0, print_orig_nl
+    slli t3, t2, 2
+    add  t4, t1, t3
+    lw   a1, 0(t4)         # a1 = array[i]
+    li   a0, 1             # print int
+    ecall
+
+    # print space
+    li   a1, 32
+    li   a0, 11
+    ecall
+
+    addi t2, t2, 1
+    j    print_orig
+
+print_orig_nl:
+    # newline
+    la   a1, newline
+    li   a0, 4
+    ecall
+
+    # Call quicksort(array, 0, n-1)
+    la   a0, array
+    li   a1, 0
+    lw   a2, n
+    addi a2, a2, -1
+    jal  quicksort
+
+    # Print "After Quick Sort:\n"
+    la   a1, aftermsg
+    li   a0, 4
+    ecall
+
+    # print sorted array
+    addi t2, x0, 0
+    lw   t0, n             # t0 = n
+print_sorted:
+    bge  t2, t0, print_sorted_nl
+    slli t3, t2, 2
+    add  t4, t1, t3
+    lw   a1, 0(x3)
+    addi x3, x3, 4
+    li   a0, 1
+    ecall
+
+    # print space
+    li   a1, 32
+    li   a0, 11
+    ecall
+
+    addi t2, t2, 1
+    j    print_sorted
+
+print_sorted_nl:
+    la   a1, newline
+    li   a0, 4
+    ecall
+
+    # exit
+    li   a0, 10
+    ecall

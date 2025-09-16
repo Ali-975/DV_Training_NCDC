@@ -1,0 +1,30 @@
+j main
+
+foo: # int foo(int i)
+    addi sp sp -8
+    sw ra 0(sp) 
+    sw s0 4(sp) 
+    mv s0 a0 # Move i
+    bne s0 x0 Next # if i != 0, skip this
+    li a0 0 # int a = 0;
+    j Epilogue # Go to Epilogue (to restore stack)
+
+Next: 
+    addi a0 s0 -1 # int j = i- 1;
+    jal ra foo # j = foo(j);
+    add a0 s0 a0 # int a = i + j;
+
+Epilogue: 
+    lw ra 0(sp) 
+    lw s0 4(sp) 
+    addi sp sp 8 
+    jr ra # return a;
+
+main:
+    li a0 3 # int j = foo(3);
+    jal ra foo # call foo
+    mv s0 a0 # mv rd rs1 sets rd = rs1
+    li a0 100 # int k = foo(100);
+    jal ra foo # call foo
+    mv s1 a0 # Saves return value in s1
+    add a0 s0 s1 # int m = j+k;

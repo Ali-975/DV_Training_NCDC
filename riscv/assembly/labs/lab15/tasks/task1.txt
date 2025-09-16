@@ -1,0 +1,30 @@
+    .data
+a:  .word 56          # First number (a)
+b:  .word 98          # Second number (b)
+gcd: .word 0          # Storage for result
+
+    .text
+    .globl main
+main:
+    # Load values of a and b
+    la t0, a
+    lw a1, 0(t0)       # t1 = a
+    la t0, b
+    lw t2, 0(t0)       # t2 = b
+
+gcd_loop:
+    beq t2, x0, done   # if b == 0 -> done
+    rem t3, a1, t2     # t3 = a % b
+    mv a1, t2          # a = b
+    mv t2, t3          # b = remainder
+    j gcd_loop         # repeat
+
+done:
+    # Store result (t1 has GCD)
+    la t0, gcd
+    sw a1, 0(t0)
+
+    # Exit program (for simulators like Venus)
+    
+    li a7, 10
+    ecall

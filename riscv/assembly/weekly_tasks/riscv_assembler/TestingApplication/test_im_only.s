@@ -1,0 +1,15 @@
+addi  x31,x6,0
+andi  a2,x6,0
+ori x5,x6,11
+xori  x5,x6,24
+slli t3,t4,17
+srli t3,s11,3
+slti t3,s9,24
+sltiu t3,t4,-256
+srai t3,t4,30
+lw x0,0(sp)
+lw x0,-4(sp)
+lh x0,-6(sp)
+lhu x0,-8(sp)
+lb x0,-9(sp)
+lbu x0,-10(sp)

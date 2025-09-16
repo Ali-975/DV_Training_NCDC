@@ -1,0 +1,111 @@
+    .data
+# 12-element array (test data)
+array:      .word 12, 5, 9, 1, 15, 8, 3, 20, 7, 6, 11, 2
+n:          .word 12
+
+origmsg:    .asciiz "Original Array:\n"
+aftermsg:   .asciiz "After Bubble Sort:\n"
+
+    .text
+    .globl main
+main:
+    # Load base and length
+    la   t1, array               # t1 = base address of array
+    la   t6, n
+    lw   t0, 0(t6)               # t0 = n (array length)
+
+    # ---------------------------
+    # Print original array header
+    # ---------------------------
+    la   a1, origmsg             # a1 = "Original Array:\n"
+    li   a0, 4                   # print string
+    ecall
+
+    # Print original array (space-separated on one line)
+    addi t2, x0, 0               # t2 = i = 0
+print_orig_loop:
+    bge  t2, t0, print_orig_nl   # if i >= n -> newline
+    slli t3, t2, 2               # t3 = i*4
+    add  t4, t1, t3              # t4 = &array[i]
+    lw   a1, 0(t4)               # a1 = array[i]
+    li   a0, 1                   # print int
+    ecall
+
+    # print space (except after last element is fine too)
+    li   a1, 32                  # ' '
+    li   a0, 11                  # print char
+    ecall
+
+    addi t2, t2, 1
+    j    print_orig_loop
+
+print_orig_nl:
+    li   a1, 10                  # '\n'
+    li   a0, 11                  # print char
+    ecall
+
+    # ---------------------------
+    # Bubble Sort (ascending)
+    # ---------------------------
+    addi t2, x0, 0               # t2 = i = 0
+outer_loop:
+    # bound = n - i - 1  (last index to compare against)
+    sub  t4, t0, t2              # t4 = n - i
+    addi t4, t4, -1              # t4 = n - i - 1
+    blt  t4, x0, print_sorted    # if bound < 0 -> done sorting
+
+    addi t3, x0, 0               # t3 = j = 0
+inner_loop:
+    bge  t3, t4, end_inner       # if j >= bound -> next outer i
+
+    slli t5, t3, 2               # t5 = j*4
+    add  t6, t1, t5              # t6 = &array[j]
+    lw   t5, 0(t6)               # t5 = array[j]
+    lw   a1, 4(t6)               # a1 = array[j+1] (temp use a1)
+
+    # if array[j+1] >= array[j] -> no swap
+    bge  a1, t5, no_swap
+    # swap array[j] and array[j+1]
+    sw   a1, 0(t6)               # array[j] = array[j+1]
+    sw   t5, 4(t6)               # array[j+1] = old array[j]
+
+no_swap:
+    addi t3, t3, 1               # j++
+    j    inner_loop
+
+end_inner:
+    addi t2, t2, 1               # i++
+    j    outer_loop
+
+# ---------------------------
+# Print sorted array
+# ---------------------------
+print_sorted:
+    la   a1, aftermsg            # "After Bubble Sort:\n"
+    li   a0, 4                   # print string
+    ecall
+
+    addi t2, x0, 0               # t2 = i = 0
+print_sorted_loop:
+    bge  t2, t0, print_sorted_nl
+    slli t3, t2, 2
+    add  t4, t1, t3
+    lw   a1, 0(t4)               # a1 = array[i]
+    li   a0, 1                   # print int
+    ecall
+
+    li   a1, 32                  # ' '
+    li   a0, 11                  # print char
+    ecall
+
+    addi t2, t2, 1
+    j    print_sorted_loop
+
+print_sorted_nl:
+    li   a1, 10                  # '\n'
+    li   a0, 11                  # print char
+    ecall
+
+    # exit
+    li   a0, 10                  # exit
+    ecall

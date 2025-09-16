@@ -1,0 +1,83 @@
+.data
+menu:      .asciiz "Choose an option:\n1. Toggle Bit\n2. Check Bit\n3. Set Bit\n4. Clear Bit\n\n"
+newline:   .asciiz "\n"
+
+# -------- INPUT VARIABLES --------
+value:     .word 22      # integer value (example: 22 = 10110b)
+position:  .word 2       # bit position (0-based, example: 2 means 3rd bit)
+choice:    .word 1       # 1=Toggle, 2=Check, 3=Set, 4=Clear
+# ---------------------------------
+
+.text
+.globl main
+main:
+    # load inputs from memory
+    la t0, value
+    lw t0, 0(t0)       # t0 = integer value
+    la t1, position
+    lw t1, 0(t1)       # t1 = bit position
+    la t2, choice
+    lw t2, 0(t2)       # t2 = choice
+
+    # print menu
+    la a1, menu
+    li a0, 4           # print string
+    ecall
+
+    # print original number
+    li a0, 1
+    mv a1, t0
+    ecall
+    la a1, newline
+    li a0, 4
+    ecall
+
+    # create mask = 1 << t1
+    li t3, 1
+    sll t3, t3, t1
+
+    # check choice
+    li t4, 1
+    beq t2, t4, toggle_bit
+    li t4, 2
+    beq t2, t4, check_bit
+    li t4, 3
+    beq t2, t4, set_bit
+    li t4, 4
+    beq t2, t4, clear_bit
+    j end
+
+toggle_bit:
+    xor t0, t0, t3
+    j print_result
+
+check_bit:
+    and t5, t0, t3
+    beqz t5, bit_not_set
+    li t0, 1
+    j print_result
+bit_not_set:
+    li t0, 0
+    j print_result
+
+set_bit:
+    or t0, t0, t3
+    j print_result
+
+clear_bit:
+    not t3, t3
+    and t0, t0, t3
+    j print_result
+
+print_result:
+    li a0, 1
+    mv a1, t0
+    ecall
+    la a1, newline
+    li a0, 4
+    ecall
+    j end
+
+end:
+    li a0, 10      # exit
+    ecall

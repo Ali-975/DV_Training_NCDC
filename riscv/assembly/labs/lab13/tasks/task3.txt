@@ -1,0 +1,77 @@
+.data
+array1: .word -1, 22, 8, 35, 5, 4, 11, 2, 1, 78
+array2: .space 40          # space for 10 words
+n:      .word 10
+
+.text
+.globl main
+main:
+    la t0, array1          # base of array1
+    la t1, array2          # base of array2
+    lw t2, n               # n = 10
+
+    lw t3, 8(t0)           # pivot = array1[2] (3rd element)
+
+    mv t4, t1              # left ptr = array2 start
+    addi t5, t1, 36        # right ptr = array2 + 9*4
+
+    li t6, 0               # i = 0
+
+loop:
+    beq t6, t2, done       # if i == n → exit
+
+    slli a0, t6, 2         # offset = i*4
+    add  a0, t0, a0        # addr = base+offset
+    lw   a1, 0(a0)         # load array1[i] → a1
+
+    beq  a1, t3, skip      # skip pivot itself
+    blt  a1, t3, left      # if < pivot → left
+
+    # > pivot → write at right
+    sw   a1, 0(t5)
+    addi t5, t5, -4
+    j skip
+
+left:
+    sw   a1, 0(t4)
+    addi t4, t4, 4
+
+skip:
+    addi t6, t6, 1         # i++
+    j loop
+
+done:
+    sw t3, 0(t4)           # place pivot in middle
+
+    # -------- Print array2 --------
+    la t1, array2          # reset pointer to array2
+    lw t2, n               # n = 10
+    li t6, 0               # i = 0
+
+print_loop:
+    beq t6, t2, exit       # if i == n → exit
+    slli a0, t6, 2         # offset = i*4
+    add  a0, t1, a0        # addr = base+offset
+    lw   a1, 0(a0)         # load array2[i] into a1
+
+    # print integer
+    li a0, 1               # syscall: print int
+    ecall
+
+    # print space
+    li a1, 32              # ASCII ' '
+    li a0, 11              # syscall: print char
+    ecall
+
+    addi t6, t6, 1
+    j print_loop
+
+exit:
+    # print newline
+    li a1, '\n'
+    li a0, 11
+    ecall
+
+    # end program
+    li a0, 10
+    ecall

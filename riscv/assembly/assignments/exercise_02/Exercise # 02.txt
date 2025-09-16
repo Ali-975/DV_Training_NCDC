@@ -1,0 +1,122 @@
+# Question # 01
+.data
+byte_arr: .byte 0x5, 0x10, 0x25, 0x40, 0x50
+word_arr: .word 0, 0, 0, 0, 0
+
+.text
+main:
+la t0, byte_arr
+la t1, word_arr
+addi t1, t1, 3
+
+lb t2, 0(t0)
+sw t2, 0(t1)
+
+lb t2, 1(t0)
+sw t2, 4(t1)
+
+lb t2, 2(t0)
+sw t2, 8(t1)
+
+lb t2, 3(t0)
+sw t2, 12(t1)
+
+lb t2, 4(t0)
+sw t2, 16(t1)
+
+# Question # 02
+.data
+sm_letter: .byte 'a', 'r', 'r', 'a', 'y'
+
+.text
+main:
+la t0, sm_letter
+
+lb t2, 0(t0)
+addi t2, t2, -32
+sb t2, 0(t0)
+
+lb t2, 1(t0)
+addi t2, t2, -32
+sb t2, 1(t0)
+
+lb t2, 2(t0)
+addi t2, t2, -32
+sb t2, 2(t0)
+
+lb t2, 3(t0)
+addi t2, t2, -32
+sb t2, 3(t0)
+
+lb t2, 4(t0)
+addi t2, t2, -32
+sw t2, 4(t0)
+
+
+# Question # 03
+.data
+sm_letter: .byte 'a', 'b', 'c', 'd', 'e'
+
+.text
+main:
+la t0, sm_letter
+
+lb t2, 0(t0)
+lb t3, 1(t0)
+lb t4, 2(t0)
+lb t5, 4(t0)
+
+sb t5, 0(t0)
+
+lb t5, 3(t0)
+
+sb t5, 1(t0)
+sb t4, 2(t0)
+sb t3, 3(t0)
+sb t2, 4(t0)
+
+
+# Question # 04
+    .data
+array:  .word 25, 5, 19      # Example input array of 3 unsigned values
+
+    .text
+    .globl main
+main:
+    # Load addresses
+    la   t0, array          # t0 = &array[0]
+
+    # Load array[0], array[1], array[2]
+    lw   t1, 0(t0)          # t1 = A[0]
+    lw   t2, 4(t0)          # t2 = A[1]
+    lw   t3, 8(t0)          # t3 = A[2]
+
+    bge  t1, t2, swap_1     # if t1 >= t2, swap
+    
+no_swap_1:
+    bge  t2, t3, swap_2     # if t2 >= t3, swap
+    
+no_swap_2:
+    bge  t1, t2, swap_1     # if t1 >= t2, swap again
+done:
+
+    sw   t1, 0(t0)          # array[0] = t1
+    sw   t2, 4(t0)          # array[1] = t2
+    sw   t3, 8(t0)          # array[2] = t3
+
+    li   a0, 0              # return 0
+    jal end
+
+swap_1:
+    mv   t4, t1             # temp = t1
+    mv   t1, t2             # t1 = t2
+    mv   t2, t4             # t2 = temp
+    j    no_swap_1
+
+swap_2:
+    mv   t4, t2             # temp = t2
+    mv   t2, t3             # t2 = t3
+    mv   t3, t4             # t3 = temp
+    j    no_swap_2
+
+end:

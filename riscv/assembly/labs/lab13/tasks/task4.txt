@@ -1,0 +1,49 @@
+.globl factorial
+
+.data
+n: .word 8       # Change this value to test different factorials
+
+.text
+main:
+    la t0, n         # Load address of n
+    lw a0, 0(t0)     # Load n into a0
+    jal ra, factorial
+
+Print:
+    addi a1, a0, 0   # Put result in a1
+    addi a0, x0, 1   # Print integer syscall
+    ecall
+
+    addi a1, x0, '\n'
+    addi a0, x0, 11  # Print newline
+    ecall
+
+    addi a0, x0, 10  # Exit
+    ecall
+
+factorial:
+    addi t0, x0, 1      # result = 1
+    addi t1, a0, 0      # counter = n
+
+fact_loop:
+    beq t1, x0, fact_done   # if counter == 0 → done
+
+    # result * counter
+    addi t2, x0, 0      # temp_sum = 0
+    addi t3, t1, 0      # copy counter
+
+mul_loop:
+    beq t3, x0, mul_done
+    add  t2, t2, t0     # temp_sum += result
+    addi t3, t3, -1
+    j    mul_loop
+
+mul_done:
+    addi t0, t2, 0      # result = temp_sum
+
+    addi t1, t1, -1     # counter--
+    j fact_loop
+
+fact_done:
+    addi a0, t0, 0      # return result in a0
+    jr ra

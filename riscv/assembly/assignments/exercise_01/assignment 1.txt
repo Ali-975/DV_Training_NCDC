@@ -1,0 +1,179 @@
+# .data
+# # # define constant n = 0x7FF (fits in 12-bit imm)
+# .equ n, 0x7F3
+# .equ bit, 4
+# .equ start_lsb_bit, 4
+# .equ X5, -6
+# .equ X6, -5
+
+# .text
+# # # QUESTION # 01
+# # addi x5, x0, n
+# # addi x6, x0, -1
+# # sub x5, x6, x5
+
+# # # QUESTION # 02
+# # addi x5, x0, 0x123
+# # slli x5, x5, 12
+# # addi x5, x5, 0x456
+# # slli x5, x5, 8
+# # addi x5, x5, 0x78
+
+# # # QUESTION # 03
+# # addi x5, x0, n
+# # slli x10, x5, 31
+# # srli x10, x10, 31
+
+# # # QUESTION # 04
+# # addi x5, x0, n
+# # addi x10, x0, 1
+# # slli x10, x10, bit
+# # # srli x10, x10, 1
+# # xor x10, x5, x10
+
+# # # QUESTION # 05
+# # addi x2, x0, 31     # x2 stores how many 1s
+# # add x3, x0, x0      # x3 loop iterates to 31
+# # add x4, x0, x0      # x4 stores how many 1s
+# # addi x5, x0, n
+# # add x6, x5, x0
+# # addi x8, x0, 1
+
+# # loop:
+# # andi x9, x6, 1      # if 1 then 1 otherwise 0
+# # bne x9, x8, else    # if not equal jump to else
+
+# # if:
+# # addi x4, x4, 1      # x4 = x4 + 1
+
+# # else:
+# # srli x6, x6, 1      # x6 shift right 
+# # addi x3, x3, 1      # x4 = x4 + 1
+# # beq x3, x2, end     # if x3 == 31 end
+# # jal loop
+
+# # end:
+# # slli x10, x4, 31
+# # srli x10, x10, 31
+
+# # # QUESTION # 06
+# # addi x5, x0, 0x123
+# # slli x5, x5, 12
+# # addi x5, x5, 0x456
+# # slli x5, x5, 8
+# # addi x5, x5, 0x78
+
+# # addi x4, x0, 0      # bit # 0, 1, 2, 3
+# # addi x6, x0, 1      # bit # 1, 2, 3, 4
+# # addi x7, x0, 2      # bit # 2, 3, 4, 5
+# # addi x8, x0, 3      # bit # 3, 4, 5, 6
+# # addi x9, x0, 4      # bit # 4, 5, 6, 7
+# # # addi x5, x0, n
+# # addi x3, x0, start_lsb_bit
+# # add x10, x5, x0
+
+# # beq x3, x4, b0
+# # beq x3, x6, b1
+# # beq x3, x7, b2
+# # beq x3, x8, b3
+# # beq x3, x9, b4
+
+# # # beq x3, x4, b0
+# # b0:
+# # slli x10, x5, 16
+# # srli x10, x10, 16
+# # jal end
+
+# # # beq x3, x6, b1
+# # b1:
+# # srli x10, x5, 4
+# # slli x10, x10, 16
+# # srli x10, x10, 16
+# # jal end
+
+# # # beq x3, x7, b2
+# # b2:
+# # srli x10, x5, 8
+# # slli x10, x10, 16
+# # srli x10, x10, 16
+# # jal end
+
+# # # beq x3, x8, b3
+# # b3:
+# # srli x10, x5, 12
+# # slli x10, x10, 16
+# # srli x10, x10, 16
+# # jal end
+
+# # # beq x3, x9, b4
+# # b4:
+# # srli x10, x5, 16
+# # jal end
+
+# # end:
+
+# # # QUESTION # 07
+# # addi x5, x0, 0xff
+# # slli x5, x5, 12
+# # addi x5, x5, 0x456
+# # slli x5, x5, 12
+# # addi x5, x5, 0x789
+
+# # addi x4, x0, 0      # bit # 0, 1, 2, 3
+# # addi x6, x0, 1      # bit # 1, 2, 3, 4
+# # addi x7, x0, 2      # bit # 2, 3, 4, 5
+# # addi x8, x0, 3      # bit # 3, 4, 5, 6
+# # addi x9, x0, 4      # bit # 4, 5, 6, 7
+# # # addi x5, x0, n
+# # addi x3, x0, start_lsb_bit
+# # add x10, x5, x0
+
+# # beq x3, x4, b0
+# # beq x3, x6, b1
+# # beq x3, x7, b2
+# # beq x3, x8, b3
+# # beq x3, x9, b4
+
+# # # beq x3, x4, b0
+# # b0:
+# # slli x10, x5, 16
+# # srai x10, x10, 16
+# # jal end
+
+# # # beq x3, x6, b1
+# # b1:
+# # srli x10, x5, 4
+# # slli x10, x10, 16
+# # srai x10, x10, 16
+# # jal end
+
+# # # beq x3, x7, b2
+# # b2:
+# # srli x10, x5, 8
+# # slli x10, x10, 16
+# # srai x10, x10, 16
+# # jal end
+
+# # # beq x3, x8, b3
+# # b3:
+# # srli x10, x5, 12
+# # slli x10, x10, 16
+# # srai x10, x10, 16
+# # jal end
+
+# # # beq x3, x9, b4
+# # b4:
+# # srai x10, x5, 16
+# # jal end
+
+# # end:
+
+# # # QUESTION # 08
+# # add x10, x0, x0     # First clear the x10
+# # addi x5, x0, X5
+# # addi x6, x0, X6
+# # blt x6, x5, run
+# # jal end
+# # run:
+# # addi x10, x0, 1
+# # end:
