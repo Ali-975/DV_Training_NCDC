@@ -1,0 +1,3 @@
+[submodule "riscv/architecture/labs/lab26/tester_files/riscv/architecture/labs/lab26/tester_files/cache-tester"]
+	path = riscv/architecture/labs/lab26/tester_files/riscv/architecture/labs/lab26/tester_files/cache-tester
+	url = https://github.com/aaqdas/cache-tester
