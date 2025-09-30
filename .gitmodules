@@ -1,3 +1,6 @@
 [submodule "riscv/architecture/labs/lab26/tester_files/cache-tester"]
 	path = riscv/architecture/labs/lab26/tester_files/cache-tester
 	url = https://github.com/aaqdas/cache-tester
+[submodule "scripting/labs/lab27/shell-scripting"]
+	path = scripting/labs/lab27/shell-scripting
+	url = https://github.com/Ali-975/shell-scripting.git
